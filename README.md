@@ -1,11 +1,15 @@
-# autoengage
+# Autoengage
 Master repo with autoengage.
 
 [![CircleCI](https://circleci.com/gh/aamplifyus/autoengage.svg?style=svg&circle-token=be3280d393039eac5067ac529b59241a235a2d4d)](https://circleci.com/gh/aamplifyus/autoengage)
 [![Coverage Status](./coverage.svg)](./coverage.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-Performs auto-engagement for social media bots and email services.
+Performs auto-engagement for social media bots and email services. Sensitive credential data, such as authentication credentials should be stored in
+`data/`. Common files include:
+
+    * credentials.json
+    * credentials.py
 
 # Installation Guide
 autoengage is intended to be a lightweight wrapper for easily analyzing large batches of patients with EEG data. eegio relies on the following libraries to work:
