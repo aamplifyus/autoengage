@@ -1,0 +1,114 @@
+import sys
+
+import numpy
+import os
+from distutils.core import setup
+from setuptools import find_packages
+
+"""
+To re-setup: 
+
+    python setup.py sdist bdist_wheel
+
+    pip install -r requirements.txt --process-dependency-links
+
+To test on test pypi:
+    
+    twine upload --repository testpypi dist/*
+    
+    # test upload
+    pip install -i https://test.pypi.org/simple/ --no-deps eztrack
+
+    twine upload dist/* 
+"""
+
+PACKAGE_NAME = "eztrack"
+with open(os.path.join("eztrack", "__init__.py"), "r") as fid:
+    for line in (line.strip() for line in fid):
+        if line.startswith("__version__"):
+            version = line.split("=")[1].strip().strip("'").strip('"')
+            break
+if version is None:
+    raise RuntimeError("Could not determine version")
+DESCRIPTION = "An auto-engagement software for web."
+URL = "https://github.com/aamplifyus/autoengage/"
+MINIMUM_PYTHON_VERSION = 3, 6  # Minimum of Python 3.6
+COMPUTING_PACKAGES = [
+    "numpy>=1.14.5",
+    "scipy>=1.1.0",
+    "scikit-learn>=0.19.2",
+    "pandas>=0.23.4",
+    "joblib>=0.14",
+    'openpyxl',
+]
+PLOTTING_PACKAGES = [
+    "matplotlib>=3.2.1",
+    "seaborn",
+]
+WEB_PACKAGES = [
+    'requests',
+    'requests-html',
+    'bs4',
+    'colorama',
+    'stem',
+    'selenium',
+]
+MISC_PACKAGES = [
+    "natsort",
+    "tqdm",
+    "xlrd",
+    'click',
+    "click_help_colors",
+]
+REQUIRED_PACKAGES = []
+REQUIRED_PACKAGES.extend(COMPUTING_PACKAGES)
+REQUIRED_PACKAGES.extend(PLOTTING_PACKAGES)
+REQUIRED_PACKAGES.extend(WEB_PACKAGES)
+REQUIRED_PACKAGES.extend(MISC_PACKAGES)
+
+CLASSIFICATION_OF_PACKAGE = [
+    # How mature is this project? Common values are
+    #   3 - Alpha
+    #   4 - Beta
+    #   5 - Production/Stable
+    "Development Status :: 3 - Alpha",
+    # Specify the Python versions you support here. In particular, ensure
+    # that you indicate whether you support Python 2, Python 3 or both.
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: Implementation",
+    "Natural Language :: English",
+]
+AUTHORS = [
+    "Adam Li",
+    "Roy Hu",
+]
+
+
+def check_python_version():
+    """Exit when the Python version is too low."""
+    if sys.version_info < MINIMUM_PYTHON_VERSION:
+        sys.exit("Python {}.{}+ is required.".format(*MINIMUM_PYTHON_VERSION))
+
+
+check_python_version()
+
+setup(
+    name=PACKAGE_NAME,
+    version=version,
+    description=DESCRIPTION,
+    author=AUTHORS,
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    url=URL,
+    license="GNU General Public License (GPL)",
+    packages=find_packages(exclude=["tests"]),
+    project_urls={
+        "Source": URL,
+        "Tracker": "https://github.com/aamplifyus/autoengage/issues",
+    },
+    include_dirs=[numpy.get_include()],
+    install_requires=REQUIRED_PACKAGES,
+    include_package_data=True,
+    classifiers=CLASSIFICATION_OF_PACKAGE,
+)
