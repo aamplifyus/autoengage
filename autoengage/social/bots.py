@@ -3,9 +3,6 @@ from selenium import webdriver
 from instapy import InstaPy
 import tweepy
 
-USERNAME = 'aamplify.us'
-PASSWORD = 'plantAtr33'
-AAPI_ORG_API_KEY = 'b0e7408b443b4ae3affad654b51f0c48'
 
 def test_login_page(browser):
     browser.get('https://www.instagram.com/accounts/login/')
