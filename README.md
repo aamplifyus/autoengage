@@ -1,7 +1,7 @@
 # Autoengage
 Master repo with autoengage.
 
-[![CircleCI](https://circleci.com/gh/aamplifyus/autoengage.svg?style=svg?branch=master)](https://circleci.com/gh/aamplifyus/autoengage)
+[![CircleCI](https://circleci.com/gh/aamplifyus/autoengage.svg?style=svg?)](https://circleci.com/gh/aamplifyus/autoengage)
 [![Build Status](https://travis-ci.com/aamplifyus/autoengage.svg?branch=master)](https://travis-ci.com/aamplifyus/autoengage)
 [![Coverage Status](./coverage.svg)](./coverage.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
