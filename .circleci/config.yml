@@ -28,7 +28,7 @@ jobs:
                 command: |
                   python -m venv .venv
                   source activate .venv/bin/activate
-                  make inplace
+                  pip install -r requirements.txt
 
             - run:
                 name: Run unit and integration tests
