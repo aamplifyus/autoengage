@@ -38,12 +38,8 @@ Setup environment from source
 
 Setup environment directly via recipe:
 
-    conda env create -f ./environment.yml --name=autoengage
-        
-To install CLI:
+    pip install -r requirements.txt
     
-    conda install click
-    make install-cli
      
 ## Install from Github
 To install, run this command in your repo:
