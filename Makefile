@@ -62,14 +62,7 @@ cli:
 
 inplace:
 	$(PYTHON) setup.py install
-    pip install --upgrade --no-deps https://api.github.com/repos/mne-tools/mne-python/zipball/master
-    pip install --upgrade https://api.github.com/repos/mne-tools/mne-bids/zipball/master
-
-install-cli:
-	# install dev versions of mne-python, mne-bids
-	pip install --upgrade --no-deps https://api.github.com/repos/mne-tools/mne-python/zipball/master
-	pip install --upgrade https://api.github.com/repos/mne-tools/mne-bids/zipball/master
-	python ./eztrack/cli/setup.py develop
+	pip install black pytest pytest-cov coverage codespell pydocstyle coverage-badge anybadge sphinx sphinx-gallery sphinx_bootstrap_theme numpydoc
 
 test: inplace check-manifest
 	rm -f .coverage

@@ -1,7 +1,8 @@
 # Autoengage
 Master repo with autoengage.
 
-[![CircleCI](https://circleci.com/gh/aamplifyus/autoengage.svg?style=svg&circle-token=be3280d393039eac5067ac529b59241a235a2d4d)](https://circleci.com/gh/aamplifyus/autoengage)
+[![CircleCI](https://circleci.com/gh/aamplifyus/autoengage.svg?style=svg?branch=master)](https://circleci.com/gh/aamplifyus/autoengage)
+[![Build Status](https://travis-ci.com/aamplifyus/autoengage.svg?branch=master)](https://travis-ci.com/aamplifyus/autoengage)
 [![Coverage Status](./coverage.svg)](./coverage.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
@@ -22,12 +23,14 @@ autoengage is intended to be a lightweight wrapper for easily analyzing large ba
     requests
     requests-html 
     bs4
-     colorama
-      stem 
-      selenium
+    colorama
+    stem 
+    selenium
     openpyxl
     matplotlib
     seaborn
+    
+    pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
     
 Setup environment from source
 

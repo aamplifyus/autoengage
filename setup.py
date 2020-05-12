@@ -1,6 +1,5 @@
 import sys
 
-import numpy
 import os
 from distutils.core import setup
 from setuptools import find_packages
@@ -17,13 +16,13 @@ To test on test pypi:
     twine upload --repository testpypi dist/*
     
     # test upload
-    pip install -i https://test.pypi.org/simple/ --no-deps eztrack
+    pip install -i https://test.pypi.org/simple/ --no-deps autoengage
 
     twine upload dist/* 
 """
 
-PACKAGE_NAME = "eztrack"
-with open(os.path.join("eztrack", "__init__.py"), "r") as fid:
+PACKAGE_NAME = "autoengage"
+with open(os.path.join("autoengage", "__init__.py"), "r") as fid:
     for line in (line.strip() for line in fid):
         if line.startswith("__version__"):
             version = line.split("=")[1].strip().strip("'").strip('"')
@@ -37,9 +36,10 @@ COMPUTING_PACKAGES = [
     "numpy>=1.14.5",
     "scipy>=1.1.0",
     "scikit-learn>=0.19.2",
-    "pandas>=0.23.4",
+    "pandas>=1.0.2",
     "joblib>=0.14",
     'openpyxl',
+    "xlrd",
 ]
 PLOTTING_PACKAGES = [
     "matplotlib>=3.2.1",
@@ -52,11 +52,13 @@ WEB_PACKAGES = [
     'colorama',
     'stem',
     'selenium',
+    'google-api-python-client',
+    'google-auth-httplib2',
+    'google-auth-oauthlib',
 ]
 MISC_PACKAGES = [
     "natsort",
     "tqdm",
-    "xlrd",
     'click',
     "click_help_colors",
 ]
@@ -107,7 +109,7 @@ setup(
         "Source": URL,
         "Tracker": "https://github.com/aamplifyus/autoengage/issues",
     },
-    include_dirs=[numpy.get_include()],
+    # include_dirs=[numpy.get_include()],
     install_requires=REQUIRED_PACKAGES,
     include_package_data=True,
     classifiers=CLASSIFICATION_OF_PACKAGE,

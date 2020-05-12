@@ -23,7 +23,7 @@ proxy_port = "8010"
 proxy_auth = "<APIKEY>:"
 proxies = {
     "https": f"https://{proxy_auth}@{proxy_host}:{proxy_port}/",
-    "http": f"http://{proxy_auth}@{proxy_host}:{proxy_port}/"
+    "http": f"http://{proxy_auth}@{proxy_host}:{proxy_port}/",
 }
 # r = requests.get(url, proxies=proxies, verify=False)
 
@@ -46,16 +46,20 @@ def _get_phone(soup, response):
         pass
 
     try:
-        phone = re.findall(r'\(?\b[2-9][0-9]{2}\)?[-][2-9][0-9]{2}[-][0-9]{4}\b', response.text)[0]
+        phone = re.findall(
+            r"\(?\b[2-9][0-9]{2}\)?[-][2-9][0-9]{2}[-][0-9]{4}\b", response.text
+        )[0]
         return phone
     except:
         pass
 
     try:
-        phone = re.findall(r'\(?\b[2-9][0-9]{2}\)?[-. ]?[2-9][0-9]{2}[-. ]?[0-9]{4}\b', response.text)[-1]
+        phone = re.findall(
+            r"\(?\b[2-9][0-9]{2}\)?[-. ]?[2-9][0-9]{2}[-. ]?[0-9]{4}\b", response.text
+        )[-1]
         return phone
     except:
-        phone = ''
+        phone = ""
         return phone
 
 
@@ -111,8 +115,8 @@ class Crawler(object):
 
     def get_urls(self):
         return {
-            'internal_urls': self.internal_urls,
-            'external_urls': self.external_urls,
+            "internal_urls": self.internal_urls,
+            "external_urls": self.external_urls,
         }
 
     @timed
@@ -224,7 +228,7 @@ def read_emails_from_webpage(url):
     email_list = set()
     for re_match in re.finditer(EMAIL_REGEX, response.html.raw_html.decode()):
         email_found = re_match.group()
-        if 'familylink' in email_found:
+        if "familylink" in email_found:
             continue
         email_list.add(email_found)
 
@@ -246,18 +250,19 @@ def generate_contact_email_table(emails, output_fpath):
         for url, email_list in url_list.items():
             for email in email_list:
                 row = collections.OrderedDict()
-                row['school'] = school
-                row['url'] = url
-                row['email'] = email
-                row['date'] = datetime.datetime.now()
+                row["school"] = school
+                row["url"] = url
+                row["email"] = email
+                row["date"] = datetime.datetime.now()
                 rows.append(row)
 
     # create the dataframe
     school_df = pd.DataFrame(rows)
-    school_df['Owner'] = ''
-    school_df['Notes'] = ''
+    school_df["Owner"] = ""
+    school_df["Notes"] = ""
     print(school_df)
     school_df.to_excel(output_fpath, index=None)
+
 
 def generate_contact_phone_table(phones, output_fpath):
     pass
@@ -271,7 +276,7 @@ def _scrape_contact_from_url(url, school_emails, school_phones):
     return email_list, phone_list
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MAX_URLS = 50
     verbose = True
 
@@ -296,8 +301,7 @@ if __name__ == '__main__':
         #     urls = all_school_urls['internal_urls']
 
     results = Parallel()(
-        delayed(_scrape_contact_from_url)
-        (url, emails[_schools[i]], phones[_schools[i]])
+        delayed(_scrape_contact_from_url)(url, emails[_schools[i]], phones[_schools[i]])
         for i, url in enumerate(tqdm(_urls))
     )
     # email_list, phone_list = results
@@ -314,7 +318,7 @@ if __name__ == '__main__':
 
     # create data frame of output
     datadir = "/Users/adam2392/Google Drive - aamplify/AAMPLIFY/Marketing/Summer Program Outreach - Students and Schools/Bay Area High School Outreach"
-    output_fpath = Path(Path(datadir) / 'school_tables.xlsx')
+    output_fpath = Path(Path(datadir) / "school_tables.xlsx")
     school_df = generate_contact_email_table(emails, output_fpath)
 
     # for url in SCHOOL_URLS:

@@ -13,7 +13,11 @@ def timed(func):
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
-        logger.info("{} with arguments ({}) ran in {}s".format(func.__name__, args, round(end - start, 2)))
+        logger.info(
+            "{} with arguments ({}) ran in {}s".format(
+                func.__name__, args, round(end - start, 2)
+            )
+        )
         return result
 
     return wrapper
